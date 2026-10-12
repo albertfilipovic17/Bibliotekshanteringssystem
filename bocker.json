@@ -1,0 +1,75 @@
+﻿[
+	{
+		"Titel": "Sagan om ringen",
+		"Författare": "J.R.R. Tolkien",
+		"ISBN": "9780261102385",
+		"ÄrTillgänglig": true
+	},
+	{
+		"Titel": "1984",
+		"Författare": "George Orwell",
+		"ISBN": "9780451524935",
+		"ÄrTillgänglig": true
+	},
+	{
+		"Titel": "Mio, min Mio",
+		"Författare": "Astrid Lindgren",
+		"ISBN": "9789129657890",
+		"ÄrTillgänglig": true
+	},
+	{
+		"Titel": "Harry Potter och de vises sten",
+		"Författare": "J.K. Rowling",
+		"ISBN": "9780747532699",
+		"ÄrTillgänglig": true
+	},
+	{
+		"Titel": "Pippi Långstrump",
+		"Författare": "Astrid Lindgren",
+		"ISBN": "9789129679182",
+		"ÄrTillgänglig": true
+	},
+	{
+		"Titel": "Den lille prinsen",
+		"Författare": "Antoine de Saint-Exupéry",
+		"ISBN": "9780156012195",
+		"ÄrTillgänglig": true
+	},
+	{
+		"Titel": "Bröderna Lejonhjärta",
+		"Författare": "Astrid Lindgren",
+		"ISBN": "9789129657883",
+		"ÄrTillgänglig": true
+	},
+	{
+		"Titel": "Män som hatar kvinnor",
+		"Författare": "Stieg Larsson",
+		"ISBN": "9780307269751",
+		"ÄrTillgänglig": true
+	},
+	{
+		"Titel": "Den oändliga historien",
+		"Författare": "Michael Ende",
+		"ISBN": "9780385299990",
+		"ÄrTillgänglig": true
+	},
+	{
+		"Titel": "Alice i Underlandet",
+		"Författare": "Lewis Carroll",
+		"ISBN": "9780486275437",
+		"ÄrTillgänglig": true
+	},
+	{
+		"Titel": "Kalle och chokladfabriken",
+		"Författare": "Roald Dahl",
+		"ISBN": "9780142410318",
+		"ÄrTillgänglig": true
+	},
+	{
+		"Titel": "Den hemliga trädgården",
+		"Författare": "Frances Hodgson Burnett",
+		"ISBN": "9780064401883",
+		"ÄrTillgänglig": true
+	}
+]
+

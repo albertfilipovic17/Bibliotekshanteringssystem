@@ -7,9 +7,9 @@ namespace Bibliotekshanteringssystem
     internal class Book
     {
         //Egenskaper för boken objektet
-        public string Titel { get; set; } 
-        public string Författare { get; set; }
-        public string ISBN { get; set; }
+        public string Titel { get; set; } = "";
+        public string Författare { get; set; } = "";
+        public string ISBN { get; set; } = "";
         public bool ÄrTillgänglig { get; set; }
     }
 }
