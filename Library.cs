@@ -431,7 +431,7 @@ namespace Bibliotekshanteringssystem
             }
         }
 
-        public void LäsInBöcker()
+        public void LäsInBöcker()// Metod för att läsa in böcker från JSON-filen
         {
             if (File.Exists("bocker.json"))
             {
@@ -442,7 +442,7 @@ namespace Bibliotekshanteringssystem
             }
         }  
 
-        public void SparaBöcker()
+        public void SparaBöcker() //Metod för att spara böcker till JSON-filen
         {
             string json = JsonSerializer.Serialize(böcker, new JsonSerializerOptions 
             { 
@@ -450,5 +450,90 @@ namespace Bibliotekshanteringssystem
             });
             File.WriteAllText("bocker.json", json);
         }
+
+        public void UppdateraBok() //Metod för att uppdatera en bok i biblioteket
+        {
+            Console.Write("Ange ISBN-Nummer för boken du vill uppdatera: ");
+            string? isbn = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(isbn))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("ISBN får inte vara tomt. Försök igen.");
+                Console.ResetColor();
+                return;
+            }
+            Book? bokAttUppdatera = null;
+            foreach (Book bok in böcker)
+            {
+                if (bok.ISBN == isbn)
+                {
+                    bokAttUppdatera = bok;
+                    break;
+                }
+            }
+            if (bokAttUppdatera == null)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Boken med ISBN {isbn} hittades inte i biblioteket.");
+                Console.ResetColor();
+                return;
+            }
+            Console.WriteLine();
+            Console.WriteLine($"Nuvarande titel: {bokAttUppdatera.Titel}");
+            Console.Write("Ange ny titel: ");
+            string? nyTitel = Console.ReadLine();
+
+            if (!string.IsNullOrWhiteSpace(nyTitel))
+            {
+                bokAttUppdatera.Titel = nyTitel;
+            }
+            Console.WriteLine();
+            Console.WriteLine($"Nuvarande författare: {bokAttUppdatera.Författare}");
+            Console.Write("Ange ny författare: ");
+            string? nyFörfattare = Console.ReadLine();
+
+            if (!string.IsNullOrWhiteSpace(nyFörfattare))
+            {
+                bokAttUppdatera.Författare = nyFörfattare;
+            }
+
+            Console.WriteLine();
+            Console.WriteLine($"Nuvarande ISBN: {bokAttUppdatera.ISBN}");
+            Console.Write("Ange nytt ISBN: ");
+            string? nyttIsbn = Console.ReadLine();
+
+            if (!string.IsNullOrWhiteSpace(nyttIsbn))
+            {
+                bool isbnFinns = false;
+
+                foreach (Book bok in böcker)
+                {
+                    if (bok != bokAttUppdatera && bok.ISBN == nyttIsbn)
+                    {
+                        isbnFinns = true;
+                        break;
+                    }
+                }
+
+                if (isbnFinns)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Det nya ISBN-numret används redan av en annan bok.");
+                    Console.ResetColor();
+                }
+                else
+                {
+                    bokAttUppdatera.ISBN = nyttIsbn;
+                }
+            }
+
+            SparaBöcker();
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Bokens uppgifter har uppdaterats.");
+            Console.ResetColor();
+        }
+
     }
 }

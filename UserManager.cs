@@ -7,6 +7,7 @@ namespace Bibliotekshanteringssystem
 {
     internal class UserManager
     {
+        // Dictionary för att lagra användare med användarnamn som nyckel
         private Dictionary<string, User> användare = new Dictionary<string, User>();
 
         public void RegistreraAnvändare()
@@ -49,7 +50,7 @@ namespace Bibliotekshanteringssystem
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Användaren har registrerats.");
             Console.ResetColor();
-        }
+        }// Metod för att registrera en ny användare
 
         public User? LoggaIn()
         {
@@ -85,9 +86,9 @@ namespace Bibliotekshanteringssystem
             Console.WriteLine("Tryck på valfri tangent för att fortsätta...");
             Console.ReadKey();
             return användare[användarnamn];
-        }
+        }//Metod för att logga in en användare
 
-        public void SkapaAdmin()
+        public void SkapaAdmin() // Metod för att skapa en administratörsanvändare
         {
             if (användare.ContainsKey("admin"))
             {
@@ -104,7 +105,7 @@ namespace Bibliotekshanteringssystem
             SparaAnvändare();
         }
 
-        public void LäsInAnvändare()
+        public void LäsInAnvändare()// Metod för att läsa in användare från en JSON-fil
         {
             if (File.Exists("anvandare.json"))
             {
@@ -115,7 +116,7 @@ namespace Bibliotekshanteringssystem
             }
         }
 
-        public void SparaAnvändare()
+        public void SparaAnvändare()// Metod för att spara användare till en JSON-fil
         {
             string json = JsonSerializer.Serialize(användare, new JsonSerializerOptions
             {

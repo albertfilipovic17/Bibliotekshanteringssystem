@@ -1,18 +1,20 @@
 ﻿using Bibliotekshanteringssystem;
 
-UserManager userManager = new UserManager();
-Library bibliotek = new Library();
-userManager.LäsInAnvändare();
+// Skapa instanser av UserManager och Library
+UserManager userManager = new UserManager(); 
+Library bibliotek = new Library(); 
+userManager.LäsInAnvändare(); 
 userManager.SkapaAdmin();
 
-bibliotek.LäsInBöcker();
+bibliotek.LäsInBöcker();// Läs in böcker från filen vid programstart
 
-bool programAktivt = true;
+bool programAktivt = true;// bool till Huvudprogramloop
 
+//Huvudprogramloop
 while (programAktivt)
 {
 
-    VisaStartmeny();
+    VisaStartmeny(); // Visa startmenyn genom att kalla på metoden VisaStartmeny()
 
     Console.Write("Ange ditt val: ");
     string? val = Console.ReadLine();
@@ -26,13 +28,13 @@ while (programAktivt)
             User? inloggadAnvändare = userManager.LoggaIn();
             if (inloggadAnvändare != null)
             {
-                if (inloggadAnvändare.ÄrAdmin)
+                if (inloggadAnvändare.ÄrAdmin) // Kontrollera om användaren är administratör
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine($"Välkommen, {inloggadAnvändare.Användarnamn}! Du är inloggad som administratör.");
                     Console.ResetColor();
                 }
-                else
+                else // Om användaren inte är administratör
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine($"Välkommen, {inloggadAnvändare.Användarnamn}!");
@@ -45,7 +47,7 @@ while (programAktivt)
                 {
                     if (inloggadAnvändare.ÄrAdmin)
                     {
-                        VisaAdminMeny();
+                        VisaAdminMeny(); // Visa administratörsmenyn genom att kalla på metoden VisaAdminMeny()
 
                         Console.Write("Ange ditt val: ");
                         string? menyVal = Console.ReadLine();
@@ -54,16 +56,19 @@ while (programAktivt)
                         switch (menyVal)
                         {
                             case "1":
-                                bibliotek.LäggTillBok();
+                                bibliotek.LäggTillBok(); // Lägg till en ny bok genom att kalla på metoden LäggTillBok()
                                 break;
                             case "2":
-                                bibliotek.TaBortBok();
+                                bibliotek.TaBortBok(); // Ta bort en bok genom att kalla på metoden TaBortBok()
                                 break;
                             case "3":
-                                bibliotek.VisaBöcker();
+                                bibliotek.VisaBöcker(); // Visa alla böcker genom att kalla på metoden VisaBöcker()
                                 break;
                             case "4":
-                                HanteraSökning(true);
+                                HanteraSökning(true); // Hantera sökningen genom att kalla på metoden HanteraSökning() med parametern true för att indikera att det är en administratör
+                                break;
+                            case "5":
+                                bibliotek.UppdateraBok(); // Uppdatera en bok genom att kalla på metoden UppdateraBok()
                                 break;
                             case "0":
                                 menyAktivt = false;
@@ -78,7 +83,7 @@ while (programAktivt)
                     }
                     else
                     {
-                        VisaAnvändarMeny();
+                        VisaAnvändarMeny(); // Visa användarmenyn genom att kalla på metoden VisaAnvändarMeny()
                         Console.Write("Ange ditt val: ");
                         string? menyVal = Console.ReadLine();
                         Console.Clear();
@@ -86,7 +91,7 @@ while (programAktivt)
                         switch (menyVal)
                         {
                             case "1":
-                                HanteraSökning(false);
+                                HanteraSökning(false); // Hantera sökningen genom att kalla på metoden HanteraSökning() med parametern false för att indikera att det inte är en administratör
                                 break;
                             case "2":
                                 Console.Write("Ange ISBN för boken du vill låna: ");
@@ -116,7 +121,7 @@ while (programAktivt)
 
                                 break;
                             case "4":
-                                bibliotek.VisaBöcker();
+                                bibliotek.VisaBöcker(); // Visa alla böcker genom att kalla på metoden VisaBöcker()
                                 break;
                             case "0":
                                 menyAktivt = false;
@@ -129,8 +134,7 @@ while (programAktivt)
                                 break;
                         }
                     }
-
-                    
+  
                     if (menyAktivt)
                     {
                         Console.WriteLine();
@@ -144,7 +148,7 @@ while (programAktivt)
 
         case "2":
             Console.Clear();
-            userManager.RegistreraAnvändare();
+            userManager.RegistreraAnvändare(); // Registrera en ny användare genom att kalla på metoden RegistreraAnvändare()
             break;
         case "0":
             programAktivt = false;
@@ -204,6 +208,7 @@ void VisaAdminMeny()
     Console.WriteLine("  [2]  Ta bort bok");
     Console.WriteLine("  [3]  Visa alla böcker");
     Console.WriteLine("  [4]  Sök efter bok");
+    Console.WriteLine("  [5]  Uppdatera bok");
     Console.WriteLine("  [0]  Logga ut");
 
     Console.WriteLine();
